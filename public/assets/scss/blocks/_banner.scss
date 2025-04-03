@@ -1,0 +1,36 @@
+@use "../helpers" as *;
+
+.banner {
+    width: 100%;
+    &__slider {
+        position: relative;
+        width: 100%;
+        height: rem(480);
+        &-navigation {
+            position: absolute;
+            right: fluid(54,24);
+            bottom: fluid(54,24);
+            display: flex;
+            align-items: center;
+            column-gap: rem(8);
+            z-index: 90;
+        }
+        &-button {
+            --size: #{rem(48)};
+
+            border: none;
+            cursor: pointer;
+            width: var(--size);
+            height: var(--size);
+            font-size: rem(20);
+            color: var(--muted-foreground);
+            background-color: var(--muted);
+            border-radius: var(--radius);
+            transition: all .2s linear;
+            &:is(&:hover, &:active) {
+                color: var(--primary-foreground);
+                background-color: var(--primary);
+            }
+        }
+    }
+}

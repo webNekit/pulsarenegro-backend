@@ -1,0 +1,28 @@
+@use "../helpers" as *;
+
+.service-list {
+    display: flex;
+    align-items: center;
+    column-gap: fluid(24, 14);
+    @include mobile {
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar { 
+            display: none; 
+        }
+    }
+    &__item {
+        display: inline-flex;
+    }
+    &__link {
+        color: currentColor;
+        transition: color .2s linear;
+        &:is(&:hover, &:active) {
+            color: var(--primary);
+        }
+        @include mobile {
+            white-space: nowrap;
+        }
+    }
+}

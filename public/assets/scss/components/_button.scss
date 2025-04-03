@@ -1,0 +1,29 @@
+@use "../helpers" as *;
+
+.button {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    color: white;
+    font-weight: 600;
+    font-size: rem(16);
+    padding: fluid(16, 12) fluid(28, 22);
+    border-radius: var(--radius);
+    &:is(&--primary) {
+        color: var(--primary-foreground);
+        background-color: var(--primary);
+    }
+    &:is(&--secondary) {
+        color: var(--secondary-foreground);
+        background-color: var(--secondary);
+    }
+    &:is(&--outline) {
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        transition: color .2s, background-color .2s;
+        &:is(:hover, :focus) {
+            color: var(--primary-foreground);
+            background-color: var(--primary);
+        }
+    }
+}

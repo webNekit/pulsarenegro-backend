@@ -1,0 +1,22 @@
+@use "../helpers" as *;
+
+.banner-slide {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: var(--radius);
+    overflow: hidden;
+   &__body {
+        padding: fluid(54,24);
+   } 
+   &__alt {
+        max-width: rem(780);
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        row-gap: rem(24);
+   }
+}

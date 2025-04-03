@@ -1,0 +1,17 @@
+@use "../helpers" as *;
+
+.calculator {
+    &:is(&--page) {
+        width: 100%;
+        padding-block: fluid(60, 40);
+        .calculator {
+            &__inner {
+                display: grid;
+                row-gap: fluid(42, 24);
+            }
+            &__body {
+                width: 100%;
+            }
+        }
+    }
+}

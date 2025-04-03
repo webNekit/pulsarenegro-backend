@@ -1,0 +1,29 @@
+@use "../helpers" as *;
+
+.callback {
+    margin-inline-start: auto;
+    @include mobile {
+        margin-inline-start: unset;
+    }
+    &__list {
+        display: flex;
+        align-items: center;
+        column-gap: fluid(12, 8);
+        @include mobile {
+            column-gap: unset;
+            row-gap: rem(12);
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+    &__link {
+        white-space: nowrap;
+        &:is(&--phone) {
+            font-weight: 600;
+        }
+        &:is(&--control) {
+            color: var(--muted-foreground);
+            border-bottom: rem(1) dashed var(--border);
+        }
+    }
+}

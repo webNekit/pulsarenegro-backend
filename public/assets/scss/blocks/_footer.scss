@@ -1,0 +1,43 @@
+@use "../helpers" as *;
+
+.footer {
+  margin-block-start: auto;
+  width: 100%;
+  background-color: var(--secondary);
+  &__row {
+    &:is(&--top) {
+      padding-block: fluid(52,38);
+      border-block-end: 1px solid var(--border);
+    }
+    &:is(&--bottom) {
+      padding-block: fluid(38,24);
+    }
+  }
+  &__inner {
+    &:is(&--top) {
+      display: flex;
+      column-gap: fluid(24, 16);
+      @include mobile {
+        column-gap: unset;
+        row-gap: rem(32);
+        flex-direction: column;
+      }
+
+    }
+    &:is(&--bottom) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  &__copyright {
+    font-size: rem(14);
+    color: var(--muted-foreground);
+  }
+  &__license {
+    padding-block-end: rem(2);
+    font-size: rem(14);
+    color: var(--muted-foreground);
+    border-block-end: rem(1) dashed var(--border);
+  }
+}

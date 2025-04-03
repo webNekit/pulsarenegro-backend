@@ -1,0 +1,42 @@
+@use "../helpers" as *;
+
+.dropdown {
+    position: relative;
+    &__list {
+        position: absolute;
+        pointer-events: none;
+        top: calc(100% + 5px);
+        left: 0;
+        padding-block: rem(14);
+        min-width: rem(220);
+        display: grid;
+        row-gap: rem(12);
+        background-color: var(--muted);
+        border-radius: var(--radius);
+        opacity: 0;
+        visibility: hidden;
+        box-shadow: 0 5px 30px rgba(34,34,34,.1);
+        z-index: 90;
+        transition-duration: .2s;
+        transition: all .2s linear;
+        @include mobile {
+            width: 100%;
+        }
+        &:is(&.is-active) {
+            top: 100%;
+            pointer-events: all;
+            opacity: 1;
+            visibility: visible;
+        }
+        &-item {
+            display: inline-block;
+        }
+        &-link {
+            padding: rem(4) rem(22);
+            font-weight: 500;
+            &:is(&:hover, &:active) {
+                color: var(--primary);
+            }
+        }
+    }
+}

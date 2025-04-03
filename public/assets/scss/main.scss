@@ -1,0 +1,37 @@
+@use "./base/fonts";
+@use "./base/vars";
+@use "./base/utils";
+@use "./base/base";
+
+// components
+@use "./components/search";
+@use "./components/button";
+@use "./components/accordion";
+@use "./components/toggler-menu";
+@use "./components/dropdown";
+@use "./components/callback";
+@use "./components/theme-selector";
+@use "./components/fields";
+
+
+// blocks
+@use "./blocks/header";
+@use "./blocks/header-catalog";
+@use "./blocks/logo";
+@use "./blocks/navbar";
+@use "./blocks/service-list";
+@use "./blocks/banner";
+@use "./blocks/banner-slide";
+@use "./blocks/generators";
+@use "./blocks/product-card";
+@use "./blocks/product-detail";
+@use "./blocks/product-specification";
+@use "./blocks/product-tab";
+@use "./blocks/questions";
+@use "./blocks/questions-filter";
+@use "./blocks/calculator";
+@use "./blocks/calculator-form";
+@use "./blocks/modal";
+@use "./blocks/footer-contacts";
+@use "./blocks/footer-navigation";
+@use "./blocks/footer";

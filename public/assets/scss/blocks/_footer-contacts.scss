@@ -1,0 +1,28 @@
+@use "../helpers" as *;
+
+.footer-contacts {
+  flex: 1;
+  &__alt {
+    display: grid;
+    row-gap: fluid(24, 16);
+    &-label {
+      font-weight: 600;
+    }
+    &-list {
+      width: 100%;
+      display: grid;
+      row-gap: rem(8);
+    }
+    &-item {
+      width: 100%;
+    }
+    &-link {
+      padding-block-end: rem(2);
+      text-align: left;
+      font-weight: 500;
+      font-size: rem(14);
+      color: var(--muted-foreground);
+      border-block-end: rem(2) dashed var(--border);
+    }
+  }
+}

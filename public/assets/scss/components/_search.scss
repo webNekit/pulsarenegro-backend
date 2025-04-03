@@ -1,0 +1,43 @@
+@use "../helpers" as *;
+
+.search {
+    @include tablet {
+        flex: 1;
+    }
+    &__form {
+        min-width: rem(420);
+        display: flex;
+        height: 100%;
+        min-height: rem(42);
+        @include tablet {
+            min-width: auto;
+        }
+        &-item {
+            flex: 1;
+        }
+        &-field {
+            width: 100%;
+            height: 100%;
+            padding-inline: fluid(16, 14);
+            color: currentColor;
+            background-color: transparent;
+            border: 1px solid var(--border);
+            border-top-left-radius: var(--radius);
+            border-bottom-left-radius: var(--radius);
+            &:is(&:focus-visible) {
+                outline-offset: -2px;
+                outline: rem(2) solid var(--primary);
+            }
+        }
+        &-submit {
+            cursor: pointer;
+            aspect-ratio: 1 / 1;
+            font-weight: 600;
+            color: var(--primary-foreground);
+            background-color: var(--primary);
+            border: none;
+            border-top-right-radius: var(--radius);
+            border-bottom-right-radius: var(--radius);
+        }
+    }
+}

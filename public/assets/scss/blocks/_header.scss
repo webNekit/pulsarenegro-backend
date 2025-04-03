@@ -1,0 +1,64 @@
+@use "../helpers" as *;
+
+.header {
+    width: 100%;
+    background-color: var(--card);
+    @include mobile {
+        position: relative;
+    }
+    &__inner {
+        width: 100%;
+    }
+    &__row {
+        &:is(&--top) {
+            @include mobile {
+                padding-block: rem(8);
+            }
+            .container {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                column-gap: rem(24);
+            }
+            .header {
+                &__overlay {
+                    display: contents;
+                    @include mobile {
+                        position: absolute;
+                        top: 0;
+                        right: -100%;
+                        bottom: 0;
+                        padding: rem(42) var(--container-padding-inline);
+                        width: fit-content;
+                        min-width: rem(320);
+                        height: 100vh;
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: rem(24);
+                        background-color: var(--card);
+                        border-left: 1px solid var(--border);
+                        z-index: 80;
+                        transition: all .3s ease-in-out;
+                        overflow: hidden;
+                        &.is-active {
+                            right: 0;
+                        }
+                    }
+                }
+            }
+        }
+        &:is(&--middle) {
+            padding-block: fluid(22, 18);
+            border-block: 1px solid var(--border);
+            .container {
+                width: 100%;
+                display: flex;
+                column-gap: fluid(24, 14);
+            }
+        }
+        &:is(&--bottom) {
+            padding-block: fluid(14, 12);
+            border-bottom: rem(1) solid var(--border);
+        }
+    }
+}

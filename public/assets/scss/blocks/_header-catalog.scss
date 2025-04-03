@@ -1,0 +1,36 @@
+@use "../helpers" as *;
+
+.header-catalog {
+    position: relative;
+    &__list {
+        pointer-events: none;
+        visibility: visible;
+        opacity: 0;
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 0;
+        display: grid;
+        row-gap: rem(14);
+        min-width: rem(280);
+        padding: fluid(28,22);
+        background-color: var(--muted);
+        border-radius: var(--radius);
+        transition: all .2s linear;
+        z-index: 90;
+        @include mobile {
+            width: 100%;
+        }
+        &:is(&.is-active) {
+            pointer-events: all;
+            visibility: visible;
+            opacity: 1;
+            top: 100%;
+        }
+        &-link {
+            color: var(--muted-foreground);
+            &:is(&:hover, &:active) {
+                color: var(--primary);
+            }
+        }
+    }
+}

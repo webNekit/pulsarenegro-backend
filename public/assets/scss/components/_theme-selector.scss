@@ -1,0 +1,32 @@
+@use "../helpers" as *;
+
+.theme-selector {
+    display: flex;
+    align-items: center;
+    column-gap: rem(4);
+    @include mobile {
+        column-gap: rem(8);
+    }
+    &__control {
+        --size: #{rem(36)};
+        cursor: pointer;
+        width: var(--size);
+        height: var(--size);
+        color: var(--muted-foreground);
+        background-color: var(--muted);
+        border: none;
+        border-radius: var(--radius);
+        transition: color .2s linear, background-color .2s linear;
+        @include mobile {
+            flex: 1;
+        }
+        &:is(&:hover, &:active) {
+            color: var(--accent-foreground);
+            background-color: var(--accent);
+        }
+        &:is(&.is-active) {
+            color: var(--primary-foreground);
+            background-color: var(--primary);
+        }
+    }
+}

@@ -1,0 +1,151 @@
+@use "../helpers" as *;
+
+.product-detail {
+  &:is(&--page) {
+    width: 100%;
+    padding-block: fluid(60, 40);
+
+    .product-detail {
+      &__inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: fluid(24, 16);
+        place-items: start;
+        @include mobile {
+          grid-column: unset;
+          place-items: unset;
+          grid-template-columns: 1fr;
+          row-gap: fluid(24, 16);
+        }
+      }
+
+      &__info {
+        padding: fluid(32,16);
+        width: 100%;
+        display: grid;
+        row-gap: fluid(24, 16);
+        color: var(--muted-foreground);
+        background-color: var(--muted);
+        border-radius: var(--radius);
+        @include mobile {
+          order: 2;
+        }
+        &-header {
+          width: 100%;
+        }
+
+        &-name {
+          color: var(--foreground);
+        }
+
+        &-body {
+          width: 100%;
+        }
+
+        &-footer {
+          width: 100%;
+          display: grid;
+          row-gap: rem(18);
+        }
+
+        &-list {
+          width: 100%;
+          display: grid;
+          row-gap: rem(10);
+        }
+
+        &-item {
+          padding-block-end: rem(8);
+          border-block-end: rem(1) solid var(--border);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        &-prices {
+          padding-block: fluid(16, 14);
+          border-block: 1px solid var(--border);
+          flex: 1;
+          display: flex;
+          align-items: center;
+        }
+
+        &-price {
+          flex: 1;
+          display: grid;
+          row-gap: rem(6);
+        }
+
+        &-priceKey {
+          font-weight: 500;
+          font-size: rem(14);
+          color: var(--muted-foreground);
+        }
+
+        &-priceValue {
+          @include fluid-text(22, 18);
+          color: var(--foreground);
+          font-weight: 600;
+        }
+
+        &-callbackButton {
+          width: 100%;
+          @include mobile {
+            height: rem(54);
+          }
+        }
+      }
+      &__preview {
+        width: 100%;
+        height: 100%;
+        background-color: var(--muted);
+        border-radius: var(--radius);
+        align-self: stretch;
+        overflow: hidden;
+        @include mobile {
+          order: 1;
+        }
+      }
+      &__slider {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        &-controls {
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: rem(24);
+          z-index: 30;
+        }
+        &-control {
+          --size: #{rem(48)};
+
+          border: none;
+          cursor: pointer;
+          width: var(--size);
+          height: var(--size);
+          font-size: rem(20);
+          color: var(--primary-foreground);
+          background-color: var(--primary);
+          border-radius: var(--radius);
+          transition: all .2s linear;
+          &:is(&:hover, &:active) {
+            color: var(--primary-foreground);
+            background-color: var(--primary);
+          }
+        }
+        &-wrapper {
+          width: 100%;
+          height: 100%;
+        }
+        &-slide {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

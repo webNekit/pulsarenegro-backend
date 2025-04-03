@@ -1,0 +1,87 @@
+@use "../helpers" as *;
+
+.generators {
+    width: 100%;
+    padding-block: rem(60);
+    &:is(&--section) {
+        width: 100%;
+        display: grid;
+        row-gap: fluid(42,24);
+        .generators { 
+            &__filter {
+                width: 100%;
+                &-wrapper {
+                    width: 100%;
+                    display: grid;
+                    row-gap: rem(16);
+                }
+                &-body {
+                    width: 100%;
+                    padding: fluid(42,16) fluid(42,16);
+                    display: grid;
+                    row-gap: rem(32);
+                    background-color: var(--secondary);
+                    border-radius: var(--radius);
+                }
+                &-group {
+                    width: 100%;
+                    display: flex;
+                    gap: rem(16);
+                    &:has(.field) {
+                        .field {
+                            flex: 1;
+                        }
+                    }
+                    @include mobile {
+                        flex-direction: column;
+                    }
+                }
+                &-fields {
+                    display: grid;
+                    grid-template-columns: repeat(3,1fr);
+                    gap: rem(24);
+                    @include tablet {
+                        grid-template-columns: repeat(2,1fr);
+                    }
+                    @include mobile {
+                        grid-template-columns: 1fr;
+                    }
+                }
+                &-buttons {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    column-gap: rem(16);
+                }
+            }
+            &__catalog {
+                .container {
+                    width: 100%;
+                    display: grid;
+                    row-gap: fluid(52,28);
+                }
+                &-list {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(3,1fr);
+                    gap: rem(24);
+                    @include tablet {
+                        grid-template-columns: repeat(2,1fr);
+                    }
+                    @include mobile {
+                        grid-template-columns: 1fr;
+                    }
+                }
+                &-more {
+                    min-width: rem(320);
+                    place-self: center;
+                    text-align: center;
+                    @include mobile {
+                        min-width: auto;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

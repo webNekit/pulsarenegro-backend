@@ -1,0 +1,18 @@
+@use "../helpers" as *;
+
+.questions {
+    padding-block: fluid(60, 40);
+    &:is(&--page) {
+        .container {
+            max-width: rem(1024);
+        }
+    }
+    &__inner {
+        display: grid;
+        row-gap: fluid(42, 24);
+    }
+    &__body {
+        display: grid;
+        row-gap: fluid(24, 16);
+    }
+}

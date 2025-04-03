@@ -1,0 +1,7 @@
+@use "../helpers" as *;
+
+.logo {
+    @include mobile{
+        display: none;
+    }
+}

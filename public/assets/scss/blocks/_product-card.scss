@@ -1,0 +1,107 @@
+@use "../helpers" as *;
+
+.product-card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    &__wrapper {
+        padding: fluid(32, 24);
+    }
+    &__header {
+        width: 100%;
+    }
+    &__preview {
+        width: 100%;
+        height: rem(320);
+        border-radius: var(--radius);
+        background-color: var(--muted);
+        &-detail {
+            width: 100%;
+            height: 100%;
+        }
+        &-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+    &__stats {
+        padding-block: fluid(16, 12);
+        display: flex;
+        flex-wrap: wrap;
+        gap: rem(6);
+    }
+    &__status {
+        @include fluid-text(14, 12);
+        position: relative;
+        pointer-events: none;
+        padding: fluid(6, 4) fluid(8, 6);
+        font-weight: 600;
+        color: var(--muted-foreground);
+        background-color: var(--muted);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        column-gap: rem(8);
+        &::before {
+            content: '';
+            --size: #{rem(6)};
+            position: relative;
+            display: block;
+            top: 0;
+            left: 0;
+            width: var(--size);
+            height: var(--size);
+            flex-shrink: 0;
+            border-radius: 50%;
+        }
+        &--primary {
+            &::before {
+                background-color: rgb(0, 152, 10);
+            }
+        }
+        &--secondary {
+            &::before {
+                background-color: rgb(11, 60, 204);
+            }
+        }
+        &--danger {
+            &::before {
+                background-color: rgb(170, 0, 0);
+            }
+        }
+    }
+    &__body {
+        padding-block-end: rem(18);
+    }
+    &__footer {
+        &-inner {
+            display: grid;
+            row-gap: fluid(16, 14);
+        }
+    }
+    &__prices {
+        padding-block: fluid(16, 14);
+        border-block: 1px solid var(--border);
+        flex: 1;
+        display: flex;
+        align-items: center;
+        &-item {
+            flex: 1;
+            display: grid;
+            row-gap: rem(6);
+        }
+    }
+    &__price-label {
+        font-weight: 500;
+        font-size: rem(14);
+        color: var(--muted-foreground);
+    }
+    &__price-value {
+        @include fluid-text(22, 18);
+        font-weight: 600;
+    }
+}

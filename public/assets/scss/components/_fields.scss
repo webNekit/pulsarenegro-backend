@@ -1,0 +1,146 @@
+@use "../helpers" as *;
+
+.field {
+    display: inline-grid;
+    row-gap: rem(6);
+    &__label {
+        font-weight: 600;
+        font-size: rem(14);
+        &:is(&--hidden) {
+            visibility: hidden;
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+    &__text {
+        padding: rem(14) fluid(18,14);
+        font-size: fluid(16,14);
+        color: currentColor;
+        background-color: var(--background);
+        border: 1px solid var(--input);
+        border-radius: var(--radius);
+        &:is(&:focus-visible) {
+            outline-offset: rem(2);
+            outline: rem(2) solid var(--primary);
+        }
+    }
+    &__dropdown {
+        position: relative;
+        &-control {
+            cursor: pointer;
+            padding: rem(14) fluid(18,14);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--muted-foreground);
+            font-size: fluid(16,14);
+            background-color: var(--background);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all .2s linear;
+            &:is(&:hover, &:active) {
+                background-color: var(--primary);
+                color: var(--primary-foreground);
+            }
+        }
+        &-body {
+            position: absolute;
+            display: inline-flex;
+            top: 100%;
+            left: 0;
+            padding: fluid(18,14) fluid(18,14);
+            width: 100%;
+            color: currentColor;
+            background-color: var(--input);
+            border-radius: var(--radius);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all .2s linear;
+            z-index: 60;
+            &:is(&.is-active) {
+                top: calc(100% + #{rem(6)});
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+        }
+        &-list {
+            width: 100%;
+            display: grid;
+            row-gap: rem(8);
+        }
+        &-item {
+            width: 100%;
+        }
+        &-value {
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            font-weight: 500;
+            font-size: rem(14);
+            color: currentColor;
+            background-color: transparent;
+            transition: color .2s linear;
+            &:is(&:hover, &:active) {
+                color: var(--primary);
+            }
+        }
+    }
+    &__select-selected {
+        font-size: rem(14);
+        font-weight: 500;
+    }
+}
+
+// checkbox
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    column-gap: rem(8);
+    cursor: pointer;
+    user-select: none;
+
+    &__input {
+        display: none;
+
+        &:is(&:checked)+.checkbox__box {
+            background-color: var(--primary);
+            border-color: Var(--primary);
+        }
+
+        &:is(&:checked)+.checkbox__box .checkbox__icon {
+            opacity: 1;
+        }
+    }
+
+    &__box {
+        --size: #{rem(22)};
+        width: var(--size);
+        height: var(--size);
+        flex-shrink: 0;
+        border: 1px solid var(--input);
+        border-radius: rem(4);
+        background-color: var(--background);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    &__icon {
+        opacity: 0;
+        font-weight: 600;
+        color: var(--primary-foreground);
+        transition: opacity 0.2s ease;
+    }
+
+    &__label {
+        color: currentColor;
+        font-size: rem(14);
+        font-weight: 500;
+    }
+}

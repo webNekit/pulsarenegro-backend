@@ -1,0 +1,30 @@
+@use "../helpers" as *;
+
+.questions-filter {
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: rem(8);
+    }
+    &__item {
+        display: inline-flex;
+    }
+    &__control {
+        cursor: pointer;
+        border: none;
+        padding: fluid(14,10) fluid(18,14);
+        text-align: center;
+        color: var(--muted-foreground);
+        background-color: var(--muted);
+        border-radius: var(--radius);
+        transition: color .2s, background-color .2s;
+        &:is(&--active) {
+            color: var(--primary-foreground);
+            background-color: var(--primary);
+        }
+        &:is(&:hover, &:active) {
+            color: var(--accent-foreground);
+            background-color: var(--accent);
+        }
+    }
+}

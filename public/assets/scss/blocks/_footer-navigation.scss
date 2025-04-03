@@ -1,0 +1,34 @@
+@use "../helpers" as *;
+
+.footer-navigation {
+  flex: 2;
+  @include mobile {
+    flex: 1;
+  }
+  &__menu {
+    display: flex;
+    @include mobile {
+      flex-direction: column;
+      row-gap: rem(16);
+    }
+    &-item {
+      flex: 1;
+      display: grid;
+      row-gap: fluid(24, 16);
+    }
+    &-label {
+      font-weight: 600;
+    }
+  }
+  &__submenu {
+    width: 100%;
+    display: grid;
+    row-gap: rem(8);
+    &-link {
+      text-align: left;
+      font-weight: 500;
+      font-size: rem(14);
+      color: var(--muted-foreground);
+    }
+  }
+}

@@ -1,0 +1,8 @@
+@use "../helpers" as *;
+
+.product-specification {
+  &:is(&--page) {
+    width: 100%;
+    padding-block-end: fluid(60,40);
+  }
+}

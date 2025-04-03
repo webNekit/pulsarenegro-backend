@@ -1,0 +1,61 @@
+@use "../helpers" as *;
+
+.accordion {
+    width: 100%;
+    &__wrapper {
+        width: 100%;
+        display: grid;
+        row-gap: rem(8);
+    }
+    &__item {
+        width: 100%;
+        background-color: var(--card);
+        border: rem(1) solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+    &__control {
+        cursor: pointer;
+        padding: fluid(18, 16) fluid(24, 18);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        &:is(.is-active) {
+            border-block-end: 1px solid var(--border);
+            .accordion {
+                &__control {
+                    &-icon {
+                        i {
+                            transform: rotate(45deg);
+                        }
+                    }
+                }
+            }
+        }
+        &-alt {
+            @include fluid-text(22, 18);
+
+            font-weight: 600;
+            text-align: left;
+        }
+        &-icon {
+            &:has(i) {
+                i {
+                    font-size: rem(22);
+                    color: var(--muted-foreground);
+                    transform: rotate(0deg);
+                    transition: all .2s linear;
+                }
+            }
+        }
+    }
+    &__content {
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        transition: all .2s linear;
+        &-inner {
+            padding: fluid(24, 18);
+        }
+    }
+}

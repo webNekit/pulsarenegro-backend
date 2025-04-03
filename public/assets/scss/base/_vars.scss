@@ -1,0 +1,64 @@
+@use "../helpers" as *;
+
+:root {
+    --background: hsl(0, 0%, 100%);
+    --foreground: hsl(240, 10%, 3.9%);
+    --muted: hsl(240, 4.8%, 95.9%);
+    --muted-foreground: hsl(240, 3.8%, 46.1%);
+    --popover: hsl(0, 0%, 100%);
+    --popover-foreground: hsl(240, 10%, 3.9%);
+    --card: hsl(0, 0%, 100%);
+    --card-foreground: hsl(240, 10%, 3.9%);
+    --border: hsl(240, 5.9%, 90%);
+    --input: hsl(240, 5.9%, 90%);
+    --primary: hsl(147, 50%, 47%);
+    --primary-foreground: hsl(0, 0%, 100%);
+    --secondary: hsl(240, 4.8%, 95.9%);
+    --secondary-foreground: hsl(240, 5.9%, 10%);
+    --accent: hsl(240, 4.8%, 95.9%);
+    --accent-foreground: hsl(240, 5.9%, 10%);
+    --destructive: hsl(0, 84.2%, 60.2%);
+    --destructive-foreground: hsl(0, 0%, 98%);
+    --ring: hsl(142.1, 76.2%, 36.3%);
+    --chart-1: hsl(142.1, 76.2%, 36.3%);
+    --chart-2: hsl(240, 4.8%, 95.9%);
+    --chart-3: hsl(240, 4.8%, 95.9%);
+    --chart-4: hsl(240, 4.8%, 98.9%);
+    --chart-5: hsl(142.1, 79.2%, 36.3%);
+    --radius: 0.5rem;
+
+    --container-width: #{rem(1440)};
+    --container-padding-inline: #{rem(20)};
+}
+
+html[data-theme="dark"] {
+    --background: hsl(253, 43%, 3%);
+    --foreground: hsl(253, 31%, 98%);
+    --muted: hsl(253, 7%, 13%);
+    --muted-foreground: hsl(253, 13%, 63%);
+    --popover: hsl(253, 43%, 3%);
+    --popover-foreground: hsl(253, 31%, 98%);
+    --card: hsl(253, 43%, 4%);
+    --card-foreground: hsl(253, 31%, 99%);
+    --border: hsl(215, 27.9%, 16.9%);
+    --input: hsl(215, 27.9%, 16.9%);
+    --primary: hsl(126, 69%, 63%);
+    --primary-foreground: hsl(126, 69%, 3%);
+    --secondary: hsl(253, 7%, 9%);
+    --secondary-foreground: hsl(253, 7%, 69%);
+    --accent: hsl(253, 13%, 14%);
+    --accent-foreground: hsl(253, 13%, 74%);
+    --destructive: hsl(339.2, 90.36%, 51.18%);
+    --destructive-foreground: hsl(0, 0%, 100%);
+    --ring: hsl(253, 91%, 58%);
+    --chart-1: hsl(253, 91%, 58%);
+    --chart-2: hsl(253, 7%, 9%);
+    --chart-3: hsl(253, 13%, 14%);
+    --chart-4: hsl(253, 7%, 12%);
+    --chart-5: hsl(253, 94%, 58%);
+
+    --radius: 0.5rem;
+
+    --container-width: #{rem(1440)};
+    --container-padding-inline: #{rem(20)};
+}

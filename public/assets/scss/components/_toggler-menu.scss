@@ -1,0 +1,21 @@
+@use "../helpers" as *;
+
+.toggler-menu {
+    --size: #{rem(38)};
+
+    position: relative;
+    pointer-events: none;
+    display: none;
+    border: none;
+    width: var(--size);
+    height: var(--size);
+    aspect-ratio: 1 / 1;
+    color: var(--muted-foreground);
+    background-color: var(--muted);
+    border-radius: var(--radius);
+    z-index: 90;
+    @include mobile {
+        display: block;
+        pointer-events: all;
+    }
+}
