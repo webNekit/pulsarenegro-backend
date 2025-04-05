@@ -22,24 +22,34 @@
                     @endforeach
                 @endif
                 @if ($products->isNotEmpty())
-                        @foreach ($products as $product)
-                                <div class="banner__slider-slide banner-slide swiper-slide">
-                                    <div class="banner-slide"
-                                        style="background-image: url({{ $product->image && is_array($product->image) && isset($product->image[0]) ? url('storage', $product->image[0]) : asset('assets/img/defaults/no-image.jpg') }});"
-                                        <div class="banner-slide__body">
-                                        <div class="banner-slide__alt">
-                                            <h2 class="banner-slide__title h2">{{  $product->title }}</h2>
-                                            <div class="banner-slide__description">
-                                                <p>{!! Str::limit($product->description, 100) !!}</p>
-                                            </div>
-                                            <a href="{{  route('product.show', [$product->id]) }}"
-                                                class="banner-slide__detail button button--primary">Подробнее</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                @endif
+    @foreach ($products as $product)
+        @php
+            // Проверяем и получаем первое изображение
+            $hasImage = !empty($product->image) && is_array($product->image) && !empty($product->image[0]);
+            $imageUrl = $hasImage ? url('storage', $product->image[0]) : asset('assets/img/defaults/no-image.jpg');
+        @endphp
+        
+        <div class="banner__slider-slide banner-slide swiper-slide">
+            <div class="banner-slide"
+                @if($hasImage)
+                    style="background-image: url({{ $imageUrl }}); background-size: 50%; background-position: right;"
+                @else
+                    style="background-image: url({{ $imageUrl }});"
+                @endif>
+                <div class="banner-slide__body">
+                    <div class="banner-slide__alt">
+                        <h2 class="banner-slide__title h2">{{ $product->title }}</h2>
+                        <div class="banner-slide__description">
+                            <p>{!! Str::limit($product->description, 100) !!}</p>
+                        </div>
+                        <a href="{{ route('product.show', $product->id) }}"
+                            class="banner-slide__detail button button--primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+@endif
         </div>
         <div class="banner__slider-navigation">
             <button class="banner__slider-button banner__slider-button--prev" data-slider-prev>
