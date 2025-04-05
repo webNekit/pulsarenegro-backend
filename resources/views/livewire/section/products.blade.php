@@ -267,7 +267,8 @@
                         </li>
                     @endforeach
                 </ul>
-                <a href="./products.html" class="generators__catalog-more button button--primary">Все товары</a>
+                <a href="{{ route('product.index') }}" class="generators__catalog-more button button--primary">Все
+                    товары</a>
             @else
                 <p>{{ __('Нет доступных товаров') }}</p>
             @endif
