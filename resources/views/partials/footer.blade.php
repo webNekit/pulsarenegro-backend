@@ -13,7 +13,7 @@ $fuels = app(App\Services\CatalogService::class)->getCatalog();
                             <ul class="footer-contacts__alt-list">
                                 <li class="footer-contacts__alt-item">
                                     <a href="tel:+7{{ $settings['phones'][0]['number'] }}"
-                                        class="footer-contacts__alt-link footer-contacts__alt-phone">+7{{ $settings['phones'][1]['number'] }}</a>
+                                        class="footer-contacts__alt-link footer-contacts__alt-phone">+7{{ $settings['phones'][0]['number'] }}</a>
                                 </li>
                                 @foreach ($settings['emails'] as $email)
                                     <li class="footer-contacts__alt-item">
