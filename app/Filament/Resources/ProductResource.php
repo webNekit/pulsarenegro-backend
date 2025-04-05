@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Imports\ProductImport;
 use App\Models\Automation;
 use App\Models\Brand;
 use App\Models\Execution;
@@ -24,20 +25,25 @@ use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationGroup = "Продукция";
+    protected static ?string $navigationGroup = "Склад";
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
 
     protected static ?string $navigationLabel = "Генераторы";
 
@@ -215,18 +221,55 @@ class ProductResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->headerActions([
+                Action::make('Импорт из Excel')
+                    ->form([
+                        FileUpload::make('file')
+                            ->label('Выберите файл')
+                            ->disk('local') // Загружаем файл в локальное хранилище
+                            ->directory('imports') // Каталог для сохранения
+                            ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'])
+                            ->required(),
+                    ])
+                    ->action(function (array $data) {
+                        if (!$data['file']) {
+                            Notification::make()
+                                ->title('Файл не загружен!')
+                                ->danger()
+                                ->send();
+                            return;
+                        }
+
+                        // Получаем абсолютный путь к файлу через Storage
+                        $filePath = Storage::disk('local')->path($data['file']);
+
+                        // Проверяем, существует ли файл
+                        if (!file_exists($filePath)) {
+                            Notification::make()
+                                ->title('Файл не найден!')
+                                ->danger()
+                                ->send();
+                            return;
+                        }
+
+                        Excel::import(new ProductImport, $filePath);
+
+                        Notification::make()
+                            ->title('Импорт завершен!')
+                            ->success()
+                            ->send();
+                    })
+            ])
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->label('Название')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('price')
-                    ->label('Цена')
+                Tables\Columns\TextColumn::make('price_rub')
+                    ->label('Цена (руб)')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('quantity')
-                    ->label('Количество')
-                    ->numeric()
-                    ->sortable(),
+                ToggleColumn::make('is_active')
+                    ->label('Отображать на сайте'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Дата создания')
                     ->dateTime()
@@ -268,6 +311,23 @@ class ProductResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function importAction(): Action
+    {
+        return Action::make('import')
+            ->label('Импорт из Excel')
+            ->icon('heroicon-o-arrow-up-tray')
+            ->form([
+                Forms\Components\FileUpload::make('file')
+                    ->label('Файл Excel')
+                    ->required()
+                    ->acceptedFileTypes(['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']),
+            ])
+            ->action(function (array $data) {
+                Excel::import(new ProductImport, $data['file']->getRealPath());
+            })
+            ->successNotificationTitle('Импорт завершен');
     }
 
     public static function getRelations(): array

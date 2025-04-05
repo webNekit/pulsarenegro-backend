@@ -21,6 +21,25 @@
                         </div>
                     @endforeach
                 @endif
+                @if ($products->isNotEmpty())
+                    @foreach ($products as $product)
+                        <div class="banner__slider-slide banner-slide swiper-slide">
+                            <div class="banner-slide"
+                                style="background-image: url({{ url('storage', $product->image[0]) }}); background-size: 50%; background-position: right;">
+                                <div class="banner-slide__body">
+                                    <div class="banner-slide__alt">
+                                        <h2 class="banner-slide__title h2">{{  $product->title }}</h2>
+                                        <div class="banner-slide__description">
+                                            <p>{!! Str::limit($product->description, 100) !!}</p>
+                                        </div>
+                                        <a href="{{  route('product.show', [$product->id]) }}"
+                                            class="banner-slide__detail button button--primary">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
             <div class="banner__slider-navigation">
                 <button class="banner__slider-button banner__slider-button--prev" data-slider-prev>

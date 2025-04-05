@@ -22,6 +22,8 @@ class NewsCategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Новости';
 
+    protected static ?string $navigationParentItem = 'Записи';
+
     protected static ?string $modelLabel = 'Категория';
 
     protected static ?string $pluralModelLabel = 'Категории';

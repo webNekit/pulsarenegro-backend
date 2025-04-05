@@ -47,10 +47,8 @@
                         <div class="product-card__price-value">{{ $data['price_usd'] }} $</div>
                     </div>
                 </div>
-                <button data-modal-target="modal-callback-product" data-product-name="{{ $data['title'] }}"
-                    class="product-card__order-btn button button--primary">
-                    {{ __('Заказать') }}
-                </button>
+                {{-- это моя кнопка --}}
+                <livewire:ui.product-card :product_title="$data['title']" :product_id="$data['id']" />
             </div>
         </div>
     </div>

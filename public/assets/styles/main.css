@@ -344,6 +344,16 @@ a[class] {
     align-items: flex-start;
     justify-content: space-between;
 }
+
+.alert-success {
+    padding: 1rem;
+    background: var(--muted);
+    color: var(--muted-foreground);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
 .accordion__control:is(.is-active) {
     border-block-end: 1px solid var(--border);
 }
@@ -765,6 +775,22 @@ a[class] {
         .header-catalog__list-link:hover,
         .header-catalog__list-link:active
     ) {
+    color: var(--primary);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo__link {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.logo__link span {
+    font-weight: 700;
     color: var(--primary);
 }
 
@@ -1723,6 +1749,98 @@ a[class] {
     background-color: var(--primary);
 }
 
+.company-contacts {
+    padding: clamp(1.5rem, 1.3142857143rem + 0.7619047619vw, 2rem);
+    display: grid;
+    row-gap: clamp(1rem, 0.9071428571rem + 0.380952381vw, 1.25rem);
+    color: var(--muted-foreground);
+    background-color: var(--muted);
+    border-radius: var(--radius);
+    border: 0.0625rem solid var(--border);
+}
+.company-contacts__group {
+    display: grid;
+    row-gap: clamp(0.5rem, 0.3607142857rem + 0.5714285714vw, 0.875rem);
+}
+.company-contacts__title {
+    font-size: clamp(0.875rem, 0.8285714286rem + 0.1904761905vw, 1rem);
+    font-weight: 500;
+    text-align: left;
+}
+.company-contacts__list {
+    display: grid;
+    row-gap: clamp(0.5rem, 0.4535714286rem + 0.1904761905vw, 0.625rem);
+}
+.company-contacts__link {
+    font-size: clamp(0.875rem, 0.8285714286rem + 0.1904761905vw, 1rem);
+    font-weight: 500;
+    text-align: left;
+    color: var(--foreground);
+}
+
+.company:is(.company--page) {
+    width: 100%;
+    padding-block: clamp(2rem, 1.7214285714rem + 1.1428571429vw, 2.75rem);
+}
+.company:is(.company--page) .company__inner {
+    display: grid;
+    row-gap: clamp(1.125rem, 0.9857142857rem + 0.5714285714vw, 1.5rem);
+}
+.company:is(.company--page) .company__body {
+    width: 100%;
+}
+.company:is(.company--page) .company__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 1.3142857143rem + 0.7619047619vw, 2rem);
+}
+@media (width <= 71.31125rem) {
+    .company:is(.company--page) .company__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (width <= 48.06125rem) {
+    .company:is(.company--page) .company__grid {
+        grid-template-columns: 1fr;
+    }
+}
+.company:is(.company--page)
+    .company__grid-item:is(
+        .company:is(.company--page) .company__grid-item--left
+    ) {
+    grid-column: 2 span;
+    display: grid;
+    align-self: start;
+    row-gap: clamp(1.5rem, 1.3142857143rem + 0.7619047619vw, 2rem);
+}
+@media (width <= 71.31125rem) {
+    .company:is(.company--page)
+        .company__grid-item:is(
+            .company:is(.company--page) .company__grid-item--left
+        ) {
+        grid-column: 1 span;
+    }
+}
+.company:is(.company--page)
+    .company__grid-item:is(
+        .company:is(.company--page) .company__grid-item--right
+    ) {
+    grid-column: 1 span;
+}
+.company:is(.company--page) .company__content {
+    display: grid;
+    row-gap: clamp(0.875rem, 0.7821428571rem + 0.380952381vw, 1.125rem);
+}
+.company:is(.company--page) .company__content-title {
+    text-align: left;
+}
+.company:is(.company--page) .company__content-description {
+    font-size: clamp(0.875rem, 0.7821428571rem + 0.380952381vw, 1.125rem);
+    color: var(--muted-foreground);
+    line-height: 1.5;
+}
+
 .footer-contacts {
     flex: 1;
 }
@@ -1824,6 +1942,115 @@ a[class] {
     font-size: 0.875rem;
     color: var(--muted-foreground);
     border-block-end: 0.0625rem dashed var(--border);
+}
+
+.wiki-banner:is(--page) {
+    width: 100%;
+}
+.wiki-banner .wiki-banner__inner {
+    padding-block: clamp(4rem, 2.1428571429rem + 7.619047619vw, 9rem);
+    padding-inline: clamp(1.125rem, -1.8rem + 12vw, 9rem);
+    width: 100%;
+    display: grid;
+    row-gap: clamp(1.125rem, 0.9857142857rem + 0.5714285714vw, 1.5rem);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: var(--radius);
+}
+.wiki-banner .wiki-banner__title {
+    color: var(--primary-foreground);
+}
+.wiki-banner .wiki-banner__form {
+    width: 100%;
+}
+.wiki-banner .wiki-banner__form-field {
+    width: 100%;
+    position: relative;
+}
+.wiki-banner .wiki-banner__form-input {
+    padding-inline: 3.25rem;
+    width: 100%;
+    height: 3.25rem;
+    color: var(--muted-foreground);
+    background-color: var(--background);
+    border-radius: var(--radius);
+    border: none;
+}
+.wiki-banner
+    .wiki-banner__form-input:is(
+        .wiki-banner .wiki-banner__form-input:focus-visible
+    ) {
+    outline-offset: 0.125rem;
+    outline: 0.125rem solid var(--primary);
+}
+.wiki-banner .wiki-banner__form-submit {
+    font-size: clamp(1.125rem, 0.9857142857rem + 0.5714285714vw, 1.5rem);
+    position: absolute;
+    color: var(--foreground);
+    top: 0;
+    left: 0;
+    width: 3.25rem;
+    height: 3.25rem;
+    background-color: unset;
+    border: none;
+    z-index: 10;
+}
+
+.download {
+    padding-block-end: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-block-end: 1px solid var(--border);
+    transition: color 0.2s;
+}
+
+.download:is(:hover) {
+    color: var(--primary);
+}
+
+.wiki-catalog:is(.wiki-catalog--page) {
+    padding-block-start: clamp(1.5rem, 1.3142857143rem + 0.7619047619vw, 2rem);
+    width: 100%;
+}
+.wiki-catalog .wiki-catalog__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 1.3142857143rem + 0.7619047619vw, 2rem);
+}
+@media (width <= 71.31125rem) {
+    .wiki-catalog .wiki-catalog__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (width <= 48.06125rem) {
+    .wiki-catalog .wiki-catalog__grid {
+        grid-template-columns: 1fr;
+    }
+}
+.wiki-catalog .wiki-catalog__card {
+    display: grid;
+    row-gap: clamp(1.125rem, 0.9857142857rem + 0.5714285714vw, 1.5rem);
+}
+.wiki-catalog .wiki-catalog__sublist {
+    width: 100%;
+    display: grid;
+    row-gap: clamp(1rem, 0.9535714286rem + 0.1904761905vw, 1.125rem);
+}
+.wiki-catalog .wiki-catalog__sublist-link {
+    display: flex;
+    align-items: center;
+    column-gap: clamp(0.625rem, 0.5321428571rem + 0.380952381vw, 0.875rem);
+    color: var(--muted-foreground);
+    transition: color 0.2s;
+}
+.wiki-catalog .wiki-catalog__sublist-link:is(:hover, :active) {
+    color: var(--primary);
+}
+.wiki-catalog .wiki-catalog__sublist-link:has(i) i {
+    font-size: clamp(0.875rem, 0.7821428571rem + 0.380952381vw, 1.125rem);
 }
 
 /*# sourceMappingURL=main.css.map */

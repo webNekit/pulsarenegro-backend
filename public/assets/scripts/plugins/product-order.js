@@ -1,31 +1,27 @@
 export default class ProductOrder {
     constructor({ buttonSelector, inputSelector, detailButtonSelector, detailTitleSelector }) {
-        console.log("ProductOrder загружен!");
+        console.log("ProductOrder загружен!"); // Проверяем загрузку скрипта
 
-        // Находим поле ввода
         this.input = document.querySelector(inputSelector);
         if (!this.input) {
-            console.error("ProductOrder: Поле ввода не найдено");
+            console.log("ProductOrder: Поле ввода не найдено");
             return;
         }
 
-        // Обработка кнопок в каталоге
         this.buttons = document.querySelectorAll(buttonSelector);
-        if (this.buttons.length > 0) {
-            console.log(`ProductOrder: Найдено ${this.buttons.length} кнопок заказа в каталоге`);
+        if (this.buttons.length) {
+            console.log("ProductOrder: Найдены кнопки заказа в каталоге");
             this.buttons.forEach(button => {
                 button.addEventListener("click", () => this.handleOrderFromCard(button));
             });
         }
 
-        // Обработка кнопки на странице товара
         this.detailButton = document.querySelector(detailButtonSelector);
         if (this.detailButton) {
             console.log("ProductOrder: Найдена кнопка заказа на странице товара");
-            this.detailButton.addEventListener("click", (e) => {
-                e.preventDefault();
-                this.handleOrderFromDetail(detailTitleSelector);
-            });
+            this.detailButton.addEventListener("click", () => this.handleOrderFromDetail(detailTitleSelector));
+        } else {
+            console.log("ProductOrder: Кнопка на странице товара не найдена");
         }
     }
 
@@ -36,39 +32,31 @@ export default class ProductOrder {
         if (productTitleElement) {
             const productName = productTitleElement.textContent.trim();
             console.log("Выбран товар (из каталога):", productName);
-            this.setProductName(productName);
+            this.input.value = productName;
         } else {
-            console.error("Ошибка: Не найден заголовок товара в карточке");
+            console.log("Ошибка: Не найден заголовок товара в карточке");
         }
     }
 
     handleOrderFromDetail(detailTitleSelector) {
-        console.log("Клик по кнопке заказа на странице товара");
+        console.log("Клик по кнопке заказа на странице товара!");
 
+        // Проверяем, что элемент с названием товара существует
         const productTitleElement = document.querySelector(detailTitleSelector);
         if (!productTitleElement) {
-            console.error("Ошибка: Не найден заголовок товара на странице. Проверяем селектор:", detailTitleSelector);
+            console.log("Ошибка: Не найден заголовок товара на странице. Проверяем селектор:", detailTitleSelector);
             return;
         }
 
         const productName = productTitleElement.textContent.trim();
         console.log("Выбран товар (со страницы товара):", productName);
-        this.setProductName(productName);
-    }
 
-    setProductName(name) {
+        // Проверяем, что инпут существует перед установкой значения
         if (this.input) {
-            this.input.value = name;
-            console.log(`Установлено значение инпута: ${this.input.value}`);
-            
-            // Если есть модальное окно, открываем его
-            const modal = document.querySelector("#modal-callback-product");
-            if (modal) {
-                modal.classList.add("modal--active");
-                console.log("Модальное окно открыто");
-            }
+            this.input.value = productName;
+            console.log(`Значение инпута: ${this.input.value}`);
         } else {
-            console.error("Ошибка: Инпут не найден");
+            console.log("Ошибка: Инпут не найден на странице товара");
         }
     }
 }

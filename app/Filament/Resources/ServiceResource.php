@@ -1,0 +1,97 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\ServiceResource\Pages;
+use App\Filament\Resources\ServiceResource\RelationManagers;
+use App\Models\Service;
+use Filament\Forms;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+
+class ServiceResource extends Resource
+{
+    protected static ?string $model = Service::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-folder';
+
+    protected static ?string $navigationGroup = 'Услуги';
+    protected static ?string $navigationLabel = 'Записи';
+    protected static ?string $modelLabel = 'услуга';
+    protected static ?string $pluralModelLabel = 'услуги';
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Section::make('Основная информация')->schema([
+                    Forms\Components\TextInput::make('name')
+                        ->label('Название')
+                        ->required(),
+                    Forms\Components\RichEditor::make('description')
+                        ->label('Описание')
+                        ->required()
+                        ->columnSpanFull(),
+                    Forms\Components\Toggle::make('is_active')
+                        ->label('Активность на сайте')
+                        ->required(),
+                ]),
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Название')
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('is_active')
+                    ->label('Активность')
+                    ->boolean(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Дата создания')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListServices::route('/'),
+            'create' => Pages\CreateService::route('/create'),
+            'view' => Pages\ViewService::route('/{record}'),
+            'edit' => Pages\EditService::route('/{record}/edit'),
+        ];
+    }
+}

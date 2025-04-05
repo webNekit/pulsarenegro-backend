@@ -6,79 +6,71 @@
                     <div class="calculator-form__section-label">Выбор оборудования</div>
                 </div>
                 <div class="calculator-form__section-body">
-                    <div class="calculator-form__section-group">
-                        <!-- Поле выбора производителя -->
-                        <div class="calculator-form__field field" data-select>
-                            <div class="field__label">{{ __('Производитель') }}</div>
-                            <div class="field__dropdown">
-                                <div class="field__dropdown-control" data-select-control>
-                                    <span class="field__select-selected">
-                                        @if($selectedManufacturer)
-                                            {{ $manufacturers->firstWhere('id', $selectedManufacturer)?->name }}
-                                        @else
-                                            Выберите производителя
-                                        @endif
-                                    </span>
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </div>
-                                <div class="field__dropdown-body" data-select-target>
-                                    @if ($manufacturers->isNotEmpty())
-                                        <ul class="field__dropdown-list">
-                                            @foreach ($manufacturers as $manufacturer)
-                                                <li class="field__dropdown-item">
-                                                    <button type="button"
-                                                        wire:click="selectManufacturer({{ $manufacturer->id }})"
-                                                        class="field__dropdown-value">
-                                                        {{ $manufacturer->name }}
-                                                    </button>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @else
-                                        <ul class="field__dropdown-list">
-                                            <li class="field__dropdown-item">{{ __('Данные отсутствуют') }}</li>
-                                        </ul>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Поле выбора генератора -->
-                        <div class="calculator-form__field field" data-select>
-                            <div class="field__label">{{ __('Генератор') }}</div>
-                            <div class="field__dropdown">
-                                <div class="field__dropdown-control" data-select-control>
-                                    <span class="field__select-selected">
-                                        @if($selectedProduct)
-                                            {{ $products->firstWhere('id', $selectedProduct)?->title }}
-                                        @else
-                                            {{ __('Выберите генератор') }}
-                                        @endif
-                                    </span>
-                                    <i class="ri-arrow-down-s-line"></i>
-                                </div>
-                                <div class="field__dropdown-body" data-select-target>
+                    <div class="calculator-form__field field" data-select>
+                        <div class="field__label">{{ __('Производитель') }}</div>
+                        <div class="field__dropdown">
+                            <div class="field__dropdown-control" data-select-control>
+                                <span class="field__select-selected">
                                     @if($selectedManufacturer)
-                                        <ul class="field__dropdown-list">
-                                            @foreach($products as $product)
-                                                <li class="field__dropdown-item">
-                                                    <button type="button"
-                                                        wire:click="$set('selectedProduct', {{ $product->id }})"
-                                                        class="field__dropdown-value">
-                                                        <span>{{ $product->title }}</span>
-                                                        <br>
-                                                        <span style="opacity: .4;">{{ __('Мощность:') }}
-                                                            {{ $product->nominal_power }} кВт</span>
-                                                    </button>
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                                        {{ $manufacturers->firstWhere('id', $selectedManufacturer)?->name }}
+                                    @else
+                                        Выберите производителя
                                     @endif
-                                </div>
+                                </span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </div>
+                            <div class="field__dropdown-body" data-select-target>
+                                @if ($manufacturers->isNotEmpty())
+                                    <ul class="field__dropdown-list">
+                                        @foreach ($manufacturers as $manufacturer)
+                                            <li class="field__dropdown-item">
+                                                <button type="button" wire:click="selectManufacturer({{ $manufacturer->id }})"
+                                                    class="field__dropdown-value">
+                                                    {{ $manufacturer->name }}
+                                                </button>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <ul class="field__dropdown-list">
+                                        <li class="field__dropdown-item">{{ __('Данные отсутствуют') }}</li>
+                                    </ul>
+                                @endif
                             </div>
                         </div>
                     </div>
-
+                    <div class="calculator-form__field field" data-select>
+                        <div class="field__label">{{ __('Генератор') }}</div>
+                        <div class="field__dropdown">
+                            <div class="field__dropdown-control" data-select-control>
+                                <span class="field__select-selected">
+                                    @if($selectedProduct)
+                                        {{ $products->firstWhere('id', $selectedProduct)?->title }}
+                                    @else
+                                        {{ __('Выберите генератор') }}
+                                    @endif
+                                </span>
+                                <i class="ri-arrow-down-s-line"></i>
+                            </div>
+                            <div class="field__dropdown-body" data-select-target>
+                                @if($selectedManufacturer)
+                                    <ul class="field__dropdown-list">
+                                        @foreach($products as $product)
+                                            <li class="field__dropdown-item">
+                                                <button type="button" wire:click="$set('selectedProduct', {{ $product->id }})"
+                                                    class="field__dropdown-value">
+                                                    <span>{{ $product->title }}</span>
+                                                    <br>
+                                                    <span style="opacity: .4;">{{ __('Мощность:') }}
+                                                        {{ $product->nominal_power }} кВт</span>
+                                                </button>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                     <!-- Поле для стоимости газа -->
                     <div class="calculator-form__section-group">
                         <div class="calculator-form__field field">
@@ -97,9 +89,13 @@
                         </div>
                     </div>
                 </div>
+                <button type="button" class="calculator-form__button button button--primary"
+                    wire:click="calculatePayback" @if(!$selectedProduct) disabled @endif>
+                    Рассчитать срок окупаемости
+                </button>
             </div>
 
-            <!-- Секция контактных данных -->
+            {{-- <!-- Секция контактных данных -->
             <div class="calculator-form__section">
                 <div class="calculator-form__section-header">
                     <div class="calculator-form__section-label">Контактные данные</div>
@@ -116,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="calculator-form__group calculator-form__group--span-1">
@@ -157,8 +153,4 @@
             </div>
         </div>
     </div>
-    <button type="button" class="calculator-form__button button button--primary" wire:click="calculatePayback"
-        @if(!$selectedProduct) disabled @endif>
-        Рассчитать срок окупаемости
-    </button>
 </form>

@@ -1,4 +1,5 @@
-<x-app :title="$title">
+<x-app :title="$title" :description="$meta_description" :keywords="$meta_keywords"
+    :ogImage="asset('assets/img/meta-img.jpg')" :ogUrl="url()->current()">
     <section class="calculator calculator--page">
         <div class="calculator__container container">
             <div class="calculator__inner">

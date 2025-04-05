@@ -18,13 +18,15 @@ class QuestionResource extends Resource
 {
     protected static ?string $model = Question::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
+
+    protected static ?string $navigationLabel = 'Вопросы';
 
     protected static ?string $navigationGroup = 'Вопрос-ответ';
 
-    protected static ?string $modelLabel = 'Вопрос';
+    protected static ?string $modelLabel = 'вопрос';
 
-    protected static ?string $pluralModelLabel = 'Вопросы';
+    protected static ?string $pluralModelLabel = 'вопросы';
 
     protected static ?string $pageTitle = 'Вопросы';
 

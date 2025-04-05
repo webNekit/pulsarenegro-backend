@@ -49,8 +49,7 @@
                                 <div class="product-detail__info-priceValue">{{ $product['price_usd'] }} $</div>
                             </div>
                         </div>
-                        <button data-modal-target="modal-callback-product"
-                            class="product-detail__info-callbackButton button button--primary">Заказать</button>
+                        <livewire:ui.product-detail-button :product_title="$product->title" :product_id="$product->id" />
                     </div>
                 </div>
                 <div class="product-detail__preview">

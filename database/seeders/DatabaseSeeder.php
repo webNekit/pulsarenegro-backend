@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             FuelSeeder::class,
             ManufacturerSeeder::class,
             VoltageSeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
+            SettingSeeder::class,
+            ServiceSeeder::class,
         ]);
     }
 }

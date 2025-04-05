@@ -22,6 +22,8 @@ class CategoryQuestionResource extends Resource
 
     protected static ?string $navigationGroup = 'Вопрос-ответ';
 
+    protected static ?string $navigationParentItem = "Вопросы";
+
     protected static ?string $modelLabel = 'Категория';
 
     protected static ?string $pluralModelLabel = 'Категории';

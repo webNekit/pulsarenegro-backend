@@ -18,7 +18,9 @@ class ManufacturerResource extends Resource
 {
     protected static ?string $model = Manufacturer::class;
 
-    protected static ?string $navigationGroup = "Продукция";
+    protected static ?string $navigationGroup = "Склад";
+
+    protected static ?string $navigationParentItem = "Генераторы";
 
     protected static ?string $navigationLabel = "Производители";
 

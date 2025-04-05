@@ -14,12 +14,12 @@ return new class extends Migration
         // Товары
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('manufacturer_id')->constrained('manufacturers')->cascadeOnDelete();
-            $table->foreignId('fuel_id')->constrained('fuels')->cascadeOnDelete();
-            $table->foreignId('voltage_id')->constrained('voltages')->cascadeOnDelete();
-            $table->foreignId('execution_id')->constrained('executions')->cascadeOnDelete();
-            $table->foreignId('automation_id')->constrained('automations')->cascadeOnDelete();
-            $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
+            $table->foreignId('manufacturer_id')->nullable()->constrained('manufacturers')->cascadeOnDelete();
+            $table->foreignId('fuel_id')->nullable()->constrained('fuels')->cascadeOnDelete();
+            $table->foreignId('voltage_id')->nullable()->constrained('voltages')->cascadeOnDelete();
+            $table->foreignId('execution_id')->nullable()->constrained('executions')->cascadeOnDelete();
+            $table->foreignId('automation_id')->nullable()->constrained('automations')->cascadeOnDelete();
+            $table->foreignId('brand_id')->nullable()->constrained('brands')->cascadeOnDelete();
             // Основые поля
             $table->string('title')->comment('Название');
             $table->string('description')->nullable()->comment('Описание');

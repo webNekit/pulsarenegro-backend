@@ -20,7 +20,9 @@ class VoltageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = "Продукция";
+    protected static ?string $navigationGroup = "Склад";
+
+    protected static ?string $navigationParentItem = "Генераторы";
 
     protected static ?string $navigationLabel = "Напряжение";
 

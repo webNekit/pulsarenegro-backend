@@ -20,13 +20,15 @@ class NewsResource extends Resource
 {
     protected static ?string $model = News::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
+    protected static ?string $navigationLabel = "Записи";
 
     protected static ?string $navigationGroup = 'Новости';
 
-    protected static ?string $modelLabel = 'Новость';
+    protected static ?string $modelLabel = 'новость';
 
-    protected static ?string $pluralModelLabel = 'Новости';
+    protected static ?string $pluralModelLabel = 'новости';
 
     public static function form(Form $form): Form
     {
