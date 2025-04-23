@@ -123,14 +123,12 @@ class ProductResource extends Resource
                                 ->numeric()
                                 ->required(),
                             Forms\Components\TextInput::make('ng_consumption_50')
-                                ->label('Расход NG при 50% мощности')
+                                ->label('Расход NG при 75% мощности')
                                 ->suffix('m3/час')
-                                ->required()
                                 ->numeric(),
                             Forms\Components\TextInput::make('ng_consumption_100')
                                 ->label('Расход NG при 100% мощности')
                                 ->suffix('m3/час')
-                                ->required()
                                 ->numeric(),
                             Forms\Components\TextInput::make('ng_pressure')
                                 ->label('Давление газа')
