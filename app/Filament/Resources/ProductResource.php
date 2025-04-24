@@ -98,25 +98,19 @@ class ProductResource extends Resource
                         ])->columns(2),
                         Section::make('Дополнительная информация')->schema([
                             Forms\Components\TextInput::make('start_type')
-                                ->label('Тип запуска')
-                                ->required(),
+                                ->label('Тип запуска'),
                             Forms\Components\TextInput::make('engine_type')
-                                ->label('Тип двигателя')
-                                ->required(),
+                                ->label('Тип двигателя'),
                             Forms\Components\TextInput::make('engine_model')
-                                ->label('Модель двигателя')
-                                ->required(),
+                                ->label('Модель двигателя'),
                             Forms\Components\TextInput::make('engine_volume')
                                 ->label('Объем двигателя')
                                 ->suffix('Л')
-                                ->numeric()
-                                ->required(),
+                                ->numeric(),
                             Forms\Components\TextInput::make('cooling_type')
-                                ->label('Тип охлаждения')
-                                ->required(),
+                                ->label('Тип охлаждения'),
                             Forms\Components\TextInput::make('nominal_power')
-                                ->label('Номинальная мощность')
-                                ->required(),
+                                ->label('Номинальная мощность'),
                             Forms\Components\TextInput::make('engine_rpm')
                                 ->label('Обороты двигателя')
                                 ->suffix('об/мин')
@@ -124,34 +118,27 @@ class ProductResource extends Resource
                                 ->required(),
                             Forms\Components\TextInput::make('ng_consumption_50')
                                 ->label('Расход NG при 75% мощности')
-                                ->suffix('m3/час')
-                                ->numeric(),
+                                ->suffix('m3/час'),
                             Forms\Components\TextInput::make('ng_consumption_100')
                                 ->label('Расход NG при 100% мощности')
                                 ->suffix('m3/час')
                                 ->numeric(),
                             Forms\Components\TextInput::make('ng_pressure')
                                 ->label('Давление газа')
-                                ->suffix('кПа')
-                                ->required(),
+                                ->suffix('кПа'),
                             Forms\Components\TextInput::make('phase_type')
-                                ->label('Тип фазности')
-                                ->required(),
+                                ->label('Тип фазности'),
                             Forms\Components\TextInput::make('generator_type')
-                                ->label('Тип электрогенератора')
-                                ->required(),
+                                ->label('Тип электрогенератора'),
                             Forms\Components\TextInput::make('dimensions')
                                 ->label('Габариты')
-                                ->suffix('мм')
-                                ->required(),
+                                ->suffix('мм'),
                             Forms\Components\TextInput::make('weight')
                                 ->label('Масса')
                                 ->suffix('кг')
-                                ->required()
                                 ->numeric(),
                             Forms\Components\TextInput::make('country')
                                 ->label('Страна производства')
-                                ->required(),
                         ])->columns(2),
                         Section::make('')->schema([
                             Repeater::make('equipment')->schema([

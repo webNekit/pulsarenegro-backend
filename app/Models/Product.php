@@ -16,6 +16,7 @@ class Product extends Model
         'price_rub' => 'decimal:0',
         'price_usd' => 'decimal:0',
         'image' => 'array',
+        'meta_keywords' => 'array',
         'engine_volume' => 'decimal:0',
         'ng_consumption_50' => 'decimal:2',
         'ng_consumption_100' => 'decimal:2',
