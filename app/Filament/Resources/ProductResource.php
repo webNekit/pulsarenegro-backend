@@ -114,8 +114,7 @@ class ProductResource extends Resource
                             Forms\Components\TextInput::make('engine_rpm')
                                 ->label('Обороты двигателя')
                                 ->suffix('об/мин')
-                                ->numeric()
-                                ->required(),
+                                ->numeric(),
                             Forms\Components\TextInput::make('ng_consumption_50')
                                 ->label('Расход NG при 75% мощности')
                                 ->suffix('m3/час'),
