@@ -48,7 +48,7 @@ $fuels = app(App\Services\CatalogService::class)->getCatalog();
                             <div class="footer-navigation__menu-label">Компания</div>
                             <ul class="footer-navigation__submenu">
                                 <li class="footer-navigation__submenu-item">
-                                    <a href="./about.html"
+                                    <a href="{{ route('company.index') }}"
                                         class="footer-navigation__submenu-link">{{ __('О компании') }}</a>
                                 </li>
                                 <li class="footer-navigation__submenu-item">

@@ -20,7 +20,7 @@ class UserResource extends Resource
     protected static ?string $navigationGroup = 'Администрирование';
     protected static ?string $navigationLabel = 'Пользователи';
     protected static ?string $modelLabel = 'пользователь';
-    protected static ?string $pluralModelLabel = 'Пользователи';фвь
+    protected static ?string $pluralModelLabel = 'Пользователи';
 
     public static function canAccess(): bool
     {
