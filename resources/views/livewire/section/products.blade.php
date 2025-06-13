@@ -250,8 +250,12 @@
                     <div class="generators__filter-buttons">
                         <button wire:click="resetFilters"
                             class="generators__filter-button button button--secondary">Сбросить</button>
-                        <button wire:click="applyFilters"
-                            class="generators__filter-button button button--primary">Подобрать</button>
+                        <button wire:click="applyFilters" wire:target="applyFilters" wire:loading.attr="disabled"
+                                class="generators__filter-button button button--primary">
+
+                            <span wire:loading.remove wire:target="applyFilters">Подобрать</span>
+                            <span wire:loading wire:target="applyFilters">Фильтруем…</span>
+                        </button>
                     </div>
                 </div>
             </div>

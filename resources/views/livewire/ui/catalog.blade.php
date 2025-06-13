@@ -5,9 +5,9 @@
     </button>
     <ul class="header-catalog__list" data-catalog-menu>
         @if ($fuels->isNotEmpty())
-            <li class="header-catalog__list-item">
-                <a href="{{ route('product.index') }}" class="header-catalog__list-link">{{ __('Все товары') }}</a>
-            </li>
+{{--            <li class="header-catalog__list-item">--}}
+{{--                <a href="{{ route('product.index') }}" class="header-catalog__list-link">{{ __('Все товары') }}</a>--}}
+{{--            </li>--}}
             @foreach ($fuels as $fuel)
                 <li class="header-catalog__list-item">
                     <a href="{{ route('product.index', ['fuel' => $fuel['id']]) }}"

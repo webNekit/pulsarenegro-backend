@@ -789,6 +789,12 @@ a[class] {
     color: var(--foreground);
 }
 
+.logo__brand {
+    width: 180px;
+    height: 40px;
+    object-fit: cover;
+}
+
 .logo__link span {
     font-weight: 700;
     color: var(--primary);

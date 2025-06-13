@@ -72,7 +72,7 @@ $services = app(App\Services\ServicesService::class)->getServices();
             <div class="header__container container">
                 <div class="header__logo logo">
                     <a href="{{ route('main.index') }}" class="logo__link">
-                        Pulsar<span>Enegro</span>
+                        <img src="{{ asset('assets/img/logo.svg') }}" alt="Логотип компании" class="logo__brand">
                     </a>
                 </div>
                 <livewire:ui.catalog />

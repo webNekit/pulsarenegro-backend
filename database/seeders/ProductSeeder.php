@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ProductSeeder extends Seeder
 {
@@ -13,7 +14,11 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $products = [
+        // Удаляем старые данные
+        DB::table('products')->truncate();
+
+        // Вставляем два продукта
+        DB::table('products')->insert([
             [
                 'manufacturer_id' => 1,
                 'fuel_id' => 1,
@@ -23,8 +28,8 @@ class ProductSeeder extends Seeder
                 'brand_id' => 1,
                 'title' => 'Дизельный генератор FG Wilson P55-1',
                 'description' => 'Надежный дизельный генератор для промышленного использования',
-                'price_rub' => 1250000,
-                'price_usd' => 15000,
+                'price_rub' => 4700000,          // Стоимость установки для примера
+                'price_usd' => 0,
                 'model' => 'P55-1',
                 'start_type' => 'Электростартер',
                 'engine_type' => 'Дизельный',
@@ -32,9 +37,10 @@ class ProductSeeder extends Seeder
                 'engine_volume' => 3.9,
                 'cooling_type' => 'Жидкостное',
                 'engine_rpm' => 1500,
-                'ng_consumption_50' => null,
-                'ng_consumption_100' => null,
+                'ng_consumption_50' => null,    // Можно оставить null, чтобы взять ng_consumption_100
+                'ng_consumption_100' => 63,     // Расход газа в м3/ч при 100% нагрузке (из твоего примера)
                 'ng_pressure' => null,
+                'nominal_power' => 200,          // Номинальная мощность кВт
                 'phase_type' => '3-фазный',
                 'generator_type' => 'Синхронный',
                 'dimensions' => '2000x800x1200 мм',
@@ -42,72 +48,44 @@ class ProductSeeder extends Seeder
                 'country' => 'Великобритания',
                 'is_active' => true,
                 'is_popular' => true,
-                'is_banner' => false
+                'is_banner' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
+                // Продукт с пустыми значениями, для проверки подстановки дефолтов
                 'manufacturer_id' => 2,
                 'fuel_id' => 3,
                 'voltage_id' => 2,
                 'execution_id' => 1,
                 'automation_id' => 3,
                 'brand_id' => 2,
-                'title' => 'Газовый генератор Cummins QSK60G',
-                'description' => 'Мощный газовый генератор для непрерывной работы',
-                'price_rub' => 8500000,
-                'price_usd' => 100000,
-                'model' => 'QSK60G',
-                'start_type' => 'Пневматический',
-                'engine_type' => 'Газовый',
-                'engine_model' => 'QSK60G',
-                'engine_volume' => 60.0,
-                'cooling_type' => 'Жидкостное',
-                'engine_rpm' => 1500,
-                'ng_consumption_50' => 45.8,
-                'ng_consumption_100' => 82.5,
-                'ng_pressure' => 2.75,
-                'phase_type' => '3-фазный',
-                'generator_type' => 'Синхронный',
-                'dimensions' => '3500x1500x2000 мм',
-                'weight' => 4500,
-                'country' => 'США',
-                'is_active' => true,
-                'is_popular' => false,
-                'is_banner' => true
-            ],
-            [
-                'manufacturer_id' => 3,
-                'fuel_id' => 2,
-                'voltage_id' => 1,
-                'execution_id' => 3,
-                'automation_id' => 1,
-                'brand_id' => 3,
-                'title' => 'Бензиновый генератор SDMO Perform 3000',
-                'description' => 'Компактный бензиновый генератор для бытового использования',
-                'price_rub' => 45000,
-                'price_usd' => 600,
-                'model' => 'Perform 3000',
+                'title' => 'Тестовый генератор без данных',
+                'description' => 'Тестовый продукт с пустыми расходами и мощностью',
+                'price_rub' => 1000000,
+                'price_usd' => 0,
+                'model' => 'Test-01',
                 'start_type' => 'Ручной',
-                'engine_type' => 'Бензиновый',
-                'engine_model' => 'Honda GX160',
-                'engine_volume' => 0.16,
-                'cooling_type' => 'Воздушное',
-                'engine_rpm' => 3000,
+                'engine_type' => 'Газовый',
+                'engine_model' => 'TestModel',
+                'engine_volume' => null,
+                'cooling_type' => null,
+                'engine_rpm' => null,
                 'ng_consumption_50' => null,
                 'ng_consumption_100' => null,
                 'ng_pressure' => null,
-                'phase_type' => '1-фазный',
-                'generator_type' => 'Асинхронный',
-                'dimensions' => '600x450x500 мм',
-                'weight' => 45,
-                'country' => 'Франция',
+                'nominal_power' => null,
+                'phase_type' => null,
+                'generator_type' => null,
+                'dimensions' => null,
+                'weight' => null,
+                'country' => null,
                 'is_active' => true,
-                'is_popular' => true,
-                'is_banner' => true
-            ]
-        ];
-
-        foreach ($products as $product) {
-            Product::create($product);
-        }
+                'is_popular' => false,
+                'is_banner' => false,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
     }
 }

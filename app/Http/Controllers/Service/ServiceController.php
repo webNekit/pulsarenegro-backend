@@ -11,6 +11,7 @@ class ServiceController extends Controller
     {
         $service = Service::findOrFail($id);
         return view('service::show', [
+            'formPageId' => env('FORM_PAGE_ID'),
             'title' => $service->name,
             'service' => $service
         ]);

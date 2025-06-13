@@ -5,6 +5,9 @@
             <div class="news__content">
                 {!!  $service->description !!}
             </div>
+            @if ($service->id == $formPageId)
+                <livewire:form.main-contact />
+            @endif
         </div>
     </section>
 </x-app>
