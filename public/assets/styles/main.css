@@ -607,7 +607,7 @@ a[class] {
     display: grid;
     row-gap: 0.5rem;
     overflow-y: scroll;
-    height: 350px;
+    max-height: 350px;
 }
 .field__dropdown-item {
     width: 100%;
